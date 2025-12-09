@@ -1,0 +1,21 @@
+import { ClinicSidebar } from "@/components/ClinicSidebar";
+import { DataProvider } from "@/context/DataContext";
+
+export default function ClinicLayout({
+    children,
+}: {
+    children: React.ReactNode;
+}) {
+    return (
+        <DataProvider>
+            <div className="flex min-h-screen bg-slate-50/50">
+                <ClinicSidebar />
+                <main className="flex-1 p-8 overflow-y-auto">
+                    <div className="max-w-7xl mx-auto">
+                        {children}
+                    </div>
+                </main>
+            </div>
+        </DataProvider>
+    );
+}
