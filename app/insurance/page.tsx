@@ -1,7 +1,7 @@
 "use client";
 
 import { Header } from "@/components/Header";
-import { Search, Shield, Check, X, Loader2, ArrowRight } from "lucide-react";
+import { Search, Shield, Check, Loader2, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -81,7 +81,7 @@ export default function InsurancePage() {
                     <div className="divide-y divide-slate-100">
                         {filtered.length === 0 ? (
                             <div className="p-12 text-center text-slate-500">
-                                No providers found matching "{search}". Please call our office to verify coverage.
+                                No providers found matching &quot;{search}&quot;. Please call our office to verify coverage.
                             </div>
                         ) : (
                             filtered.map((ins, i) => (
@@ -137,9 +137,16 @@ export default function InsurancePage() {
 
 function Phone({ className }: { className?: string }) { return <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg> }
 
+interface CoverageResult {
+    plan: string;
+    copay: string;
+    deductibleMet: string;
+    status: string;
+}
+
 function VerificationForm() {
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-    const [result, setResult] = useState<any>(null);
+    const [result, setResult] = useState<CoverageResult | null>(null);
 
     const checkCoverage = (e: React.FormEvent) => {
         e.preventDefault();

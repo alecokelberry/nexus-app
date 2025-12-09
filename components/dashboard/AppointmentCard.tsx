@@ -1,10 +1,12 @@
-import { Calendar, Clock, MapPin } from "lucide-react";
+import { Calendar, Clock } from "lucide-react";
+import { Appointment } from "@/context/DataContext";
+
 // import { Button } from "@/components/ui/button"; // Removed to avoid dependency issue
 // Actually, I'll use direct Tailwind for buttons to avoid dependency on uncreated UI components, or I should have created them.
 // The prompt said "Layout component" in Phase 1, didn't explicitly say "Button" component.
 // I'll stick to raw Tailwind for speed and "vibe" control unless directed otherwise.
 
-export function AppointmentCard({ appointment }: { appointment: any }) {
+export function AppointmentCard({ appointment }: { appointment: Appointment }) {
     return (
         <div className="relative overflow-hidden rounded-2xl bg-white/70 p-6 shadow-lg backdrop-blur-md border border-white/20 hover:shadow-xl transition-all duration-300 group">
             <div className="absolute top-0 right-0 -mt-4 -mr-4 h-24 w-24 rounded-full bg-primary/10 blur-2xl transition-all duration-500 group-hover:bg-primary/20" />
@@ -25,7 +27,7 @@ export function AppointmentCard({ appointment }: { appointment: any }) {
                                 <Clock className="w-4 h-4" />
                                 <span className="text-sm">{appointment.time}</span>
                             </div>
-                            <p className="text-sm font-medium text-primary mt-2">{appointment.type}</p>
+                            <p className="text-sm font-medium text-primary mt-2">{appointment.specialty}</p>
                         </div>
                     </div>
                 </div>

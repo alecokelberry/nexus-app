@@ -1,7 +1,7 @@
 "use client";
 
 import { useData } from "@/context/DataContext";
-import { Search, Filter, MoreHorizontal } from "lucide-react";
+import { Search } from "lucide-react";
 import Link from "next/link";
 
 export default function PatientsIndexPage() {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { X, ChevronRight, ChevronLeft, Check, PenTool } from "lucide-react";
+import { X, ChevronRight, Check, PenTool } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface DigitalFormWizardProps {
@@ -12,7 +12,7 @@ interface DigitalFormWizardProps {
 export function DigitalFormWizard({ formTitle, onClose }: DigitalFormWizardProps) {
     const [step, setStep] = useState(1);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [signature, setSignature] = useState("");
+    const [, setSignature] = useState(""); // signature unused
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [isDrawing, setIsDrawing] = useState(false);
 

@@ -1,13 +1,12 @@
 "use client";
 
 import { useData } from "@/context/DataContext";
-import { User, Calendar, FileText, ChevronLeft, Clock, MapPin, AlertCircle } from "lucide-react";
+import { Calendar, FileText, ChevronLeft, AlertCircle } from "lucide-react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import Image from "next/image";
 
 export default function PatientDetailPage() {
     const { patientProfile, appointments } = useData();
-    const params = useParams();
     // In a real app, we'd fetch patient by ID. 
     // For demo, we just show the "active" demo patient or a mock one if ID differs.
     // If ID matches demo, show context state (so we can see live updates e.g. new appts).
@@ -36,8 +35,8 @@ export default function PatientDetailPage() {
                 <div className="space-y-6">
                     <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
                         <div className="flex items-center gap-3 mb-6">
-                            <div className="w-16 h-16 rounded-full bg-slate-100 overflow-hidden">
-                                <img src={patientProfile.avatarUrl} className="w-full h-full object-cover" />
+                            <div className="w-16 h-16 rounded-full bg-slate-100 overflow-hidden relative">
+                                <Image src={patientProfile.avatarUrl} alt={patientProfile.name} fill className="object-cover" />
                             </div>
                             <div>
                                 <span className="block font-medium text-slate-900">Vitals (Latest)</span>

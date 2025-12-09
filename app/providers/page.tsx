@@ -3,8 +3,9 @@
 import { Header } from "@/components/Header";
 import { mockProviders } from "@/data/mockPatient";
 import Link from "next/link";
-import { ArrowRight, Star, GraduationCap, MapPin } from "lucide-react";
+import { Star, GraduationCap, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function ProvidersPage() {
     // Group providers by specialty if we had more
@@ -38,7 +39,7 @@ export default function ProvidersPage() {
                                 className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 overflow-hidden border border-slate-100 hover:shadow-2xl hover:-translate-y-1 transition-all group"
                             >
                                 <div className="aspect-[4/3] bg-slate-200 relative overflow-hidden">
-                                    <img src={doctor.image} alt={doctor.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                                    <Image src={doctor.image} alt={doctor.name} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
                                     <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/60 to-transparent p-6 pt-20">
                                         <span className="text-white font-semibold text-lg">{doctor.specialty}</span>
                                     </div>

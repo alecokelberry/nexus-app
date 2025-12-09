@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-    LayoutDashboard,
     Calendar,
     FileText,
     CreditCard,
@@ -12,11 +11,13 @@ import {
     Menu,
     ChevronLeft,
     Activity,
+    Video,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const sidebarItems = [
     { name: "Appointments", href: "/appointments", icon: Calendar },
+    { name: "Telehealth", href: "/telehealth", icon: Video },
     { name: "Medical Records", href: "/records", icon: FileText },
     { name: "Bill Pay", href: "/billing", icon: CreditCard },
     { name: "Settings", href: "/settings", icon: Settings },

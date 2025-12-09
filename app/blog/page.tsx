@@ -1,8 +1,11 @@
 "use client";
 
 import { Header } from "@/components/Header";
-import Link from "next/link";
 import { Calendar, User, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link"; // Keeping Link if we decide to use it, but linter said unused.
+// Actually line 63 uses <a> and import had Link. I should switch <a> to Link or remove import.
+// Switching to Link is better for Next.js.
 
 export default function BlogPage() {
     return (
@@ -48,7 +51,7 @@ export default function BlogPage() {
                     ].map((post, i) => (
                         <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-lg shadow-slate-200/50 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-slate-100 flex flex-col group h-full">
                             <div className="aspect-video overflow-hidden relative">
-                                <img src={post.image} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt={post.title} />
+                                <Image src={post.image} fill className="object-cover group-hover:scale-105 transition-transform duration-700" alt={post.title} />
                                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider text-slate-800">
                                     Wellness
                                 </div>
@@ -60,9 +63,9 @@ export default function BlogPage() {
                                 </div>
                                 <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors">{post.title}</h3>
                                 <p className="text-slate-600 text-sm leading-relaxed mb-6 flex-1">{post.excerpt}</p>
-                                <a href="#" className="inline-flex items-center text-primary font-semibold text-sm hover:underline mt-auto">
+                                <Link href="#" className="inline-flex items-center text-primary font-semibold text-sm hover:underline mt-auto">
                                     Read Article <ArrowRight className="w-4 h-4 ml-1" />
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     ))}

@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { User, Building2, ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -8,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
     const router = useRouter();
-    const [role, setRole] = useState<"patient" | "clinic" | null>(null);
+    // const [role, setRole] = useState<"patient" | "clinic" | null>(null); // Unused
 
     const handleDemoLogin = (selectedRole: "patient" | "clinic") => {
         // Simple mock auth - just redirect

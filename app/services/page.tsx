@@ -1,9 +1,11 @@
 "use client";
 
 import { Header } from "@/components/Header";
-import { ArrowLeft, ArrowRight, Check, Activity, Shield } from "lucide-react";
+import { ArrowRight, Check, Activity } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Image from "next/image";
+
 
 const services = [
     {
@@ -64,7 +66,7 @@ export default function ServicesPage() {
                             <div className="w-full lg:w-1/2">
                                 <div className="aspect-[16/9] rounded-3xl overflow-hidden shadow-2xl relative group">
                                     <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500" />
-                                    <img src={service.image} alt={service.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+                                    <Image src={service.image} alt={service.title} fill className="object-cover transform group-hover:scale-105 transition-transform duration-700" />
                                 </div>
                             </div>
                             <div className="w-full lg:w-1/2 mt-8 lg:mt-0">

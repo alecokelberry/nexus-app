@@ -1,7 +1,7 @@
 "use client";
 
 import { Header } from "@/components/Header";
-import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import { MapPin, Phone, Mail, Send } from "lucide-react";
 
 export default function ContactPage() {
     return (
@@ -13,7 +13,7 @@ export default function ContactPage() {
                 <div className="bg-slate-900 py-20 text-white text-center">
                     <h1 className="text-4xl md:text-5xl font-light mb-6">Get In Touch</h1>
                     <p className="text-slate-300 text-xl max-w-2xl mx-auto px-4">
-                        We're here to answer your questions and help you schedule your visit.
+                        We&apos;re here to answer your questions and help you schedule your visit.
                     </p>
                 </div>
 

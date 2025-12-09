@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Users, Calendar, Activity, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
@@ -66,7 +65,7 @@ export default function ClinicDashboardPage() {
                 {/* Today's Schedule (Simplified) */}
                 <div className="bg-white rounded-2xl shadow-sm border border-border overflow-hidden">
                     <div className="p-6 border-b border-border">
-                        <h3 className="font-semibold text-foreground">Today's Schedule</h3>
+                        <h3 className="font-semibold text-foreground">Today&apos;s Schedule</h3>
                     </div>
                     <div className="divide-y divide-border">
                         {[
@@ -83,8 +82,8 @@ export default function ClinicDashboardPage() {
                                     </div>
                                 </div>
                                 <span className={`px-2.5 py-1 rounded-full text-xs font-medium border ${appt.status === "Checked In" ? "bg-green-50 text-green-700 border-green-200" :
-                                        appt.status === "Late" ? "bg-red-50 text-red-700 border-red-200" :
-                                            "bg-blue-50 text-blue-700 border-blue-200"
+                                    appt.status === "Late" ? "bg-red-50 text-red-700 border-red-200" :
+                                        "bg-blue-50 text-blue-700 border-blue-200"
                                     }`}>
                                     {appt.status}
                                 </span>

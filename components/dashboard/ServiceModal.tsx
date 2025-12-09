@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ArrowRight, Info } from "lucide-react";
+import { X, ArrowRight, Info, LucideIcon } from "lucide-react";
 
 interface Service {
     id: string;
@@ -7,7 +7,7 @@ interface Service {
     category: string;
     description: string;
     symptoms: string[];
-    icon: any; // Lucide icon type
+    icon: LucideIcon;
 }
 
 interface ServiceModalProps {

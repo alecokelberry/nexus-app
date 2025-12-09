@@ -3,13 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Calendar, Users, MessageSquare, LogOut, LayoutDashboard } from "lucide-react";
+import { Calendar, Users, MessageSquare, LogOut, LayoutDashboard, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const sidebarItems = [
-    { name: "Schedule", href: "/clinic", icon: Calendar },
-    { name: "Patients", href: "/clinic/patients", icon: Users },
+    { name: "Schedule", href: "/clinic/schedule", icon: Calendar },
     { name: "Messages", href: "/clinic/messages", icon: MessageSquare },
+    { name: "Analytics", href: "/clinic/analytics", icon: LayoutDashboard },
+    { name: "Patients", href: "/clinic/patients", icon: Users },
+    { name: "Admin", href: "/clinic/admin", icon: Settings },
 ];
 
 export function ClinicSidebar() {

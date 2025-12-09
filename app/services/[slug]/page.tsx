@@ -3,11 +3,25 @@
 import { Header } from "@/components/Header";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, CheckCircle2, AlertCircle } from "lucide-react";
+import { ArrowLeft, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
+
+interface FaqItem {
+    q: string;
+    a: string;
+}
+
+interface ServiceDetail {
+    title: string;
+    subtitle: string;
+    image: string;
+    content: string;
+    faq: FaqItem[];
+}
 
 // Mock Data for individual service content
-const serviceDetails: Record<string, any> = {
+const serviceDetails: Record<string, ServiceDetail> = {
     "sinus": {
         title: "Sinus & Nasal Care",
         subtitle: "Breathe easier with advanced treatments for chronic sinusitis.",
@@ -52,7 +66,9 @@ export default function ServiceDetailPage() {
                 animate={{ opacity: 1 }}
                 className="relative h-[40vh] bg-slate-900 overflow-hidden flex items-center"
             >
-                <img src={data.image} className="absolute inset-0 w-full h-full object-cover opacity-40" />
+                <div className="absolute inset-0 w-full h-full opacity-40">
+                    <Image src={data.image} alt={data.title} fill className="object-cover" />
+                </div>
                 <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center md:text-left">
                     <Link href="/services" className="inline-flex items-center text-slate-300 hover:text-white mb-6 transition-colors font-medium">
                         <ArrowLeft className="w-4 h-4 mr-2" /> Back to Services
@@ -76,7 +92,7 @@ export default function ServiceDetailPage() {
                             <AlertCircle className="w-6 h-6 text-primary" /> Common Questions
                         </h3>
                         <div className="space-y-6">
-                            {data.faq.map((item: any, i: number) => (
+                            {data.faq.map((item: FaqItem, i: number) => (
                                 <div key={i} className="bg-white p-6 rounded-xl shadow-sm border border-slate-200/50">
                                     <h4 className="font-bold text-slate-900 mb-2">{item.q}</h4>
                                     <p className="text-slate-600">{item.a}</p>

@@ -1,7 +1,7 @@
 "use client";
 
 import { Header } from "@/components/Header";
-import { FileText, Download, ArrowRight, PenTool } from "lucide-react";
+import { FileText, Download, PenTool } from "lucide-react";
 import { useState } from "react";
 import { DigitalFormWizard } from "@/components/forms/DigitalFormWizard";
 import { AnimatePresence } from "framer-motion";

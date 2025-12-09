@@ -1,6 +1,12 @@
-import { FileText, ArrowRight, Activity } from "lucide-react";
+import { ArrowRight, Activity } from "lucide-react";
 
-export function RecentResultsCard({ results }: { results: any[] }) {
+interface RecentResult {
+    id: string;
+    title: string;
+    date: string;
+}
+
+export function RecentResultsCard({ results }: { results: RecentResult[] }) {
     return (
         <div className="relative overflow-hidden rounded-2xl bg-white/70 p-6 shadow-lg backdrop-blur-md border border-white/20 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
             <div className="flex items-center justify-between mb-6">

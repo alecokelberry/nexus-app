@@ -35,7 +35,7 @@ export const patientData = {
                 specialty: "Otolaryngology (ENT)",
                 reason: "Sinus Pressure & Follow-up",
                 location: "Provo Clinic - Suite 200",
-                status: "Confirmed",
+                status: "Confirmed" as const,
                 canCheckIn: true,
                 image: "/doctors/thorne.jpg"
             }
@@ -49,7 +49,7 @@ export const patientData = {
                 specialty: "Audiology",
                 reason: "Annual Hearing Exam",
                 location: "Provo Clinic - Suite 204",
-                status: "Completed",
+                status: "Completed" as const,
                 notes: "Patient reported mild tinnitus in left ear."
             }
         ]
@@ -177,19 +177,48 @@ export const patientData = {
             availability: ["Tue", "Thu"],
             rating: 5.0
         }
-    ]
+    ],
+
+    // 8. Engagement & Retention (New)
+    engagement: {
+        broadcasts: [
+            {
+                id: "bc_1",
+                type: "info", // info, warning, success
+                title: "Flu Shot Clinic Now Open",
+                message: "Walk-in flu shots available every Friday in October. No appointment needed!",
+                active: true,
+                dismissable: true
+            }
+        ],
+        surveys: [
+            {
+                id: "srv_1",
+                type: "post-visit",
+                title: "How was your recent visit?",
+                description: "Dr. Thorne would love your feedback on your sinus procedure.",
+                status: "pending", // pending, completed
+                dueDate: "2025-12-20"
+            }
+        ],
+        campaigns: [
+            {
+                id: "camp_1",
+                type: "recall",
+                title: "Annual Hearing Test Due",
+                description: "It's been 12 months since your last audiogram. Schedule now to track your hearing health.",
+                actionLink: "/appointments",
+                status: "active"
+            }
+        ]
+    }
 };
 
 // Aliases for compatibility with existing components that expect 'mockPatient'
 export const mockPatient = {
     id: patientData.profile.id,
     name: patientData.profile.name,
-    nextAppointment: {
-        date: "December 14th",
-        time: patientData.appointments.upcoming[0].time,
-        type: patientData.appointments.upcoming[0].reason,
-        doctor: patientData.appointments.upcoming[0].provider
-    },
+    nextAppointment: patientData.appointments.upcoming[0],
     balance: patientData.billing.currentBalance,
     recentResults: patientData.records.map(r => ({
         id: r.id,
@@ -201,7 +230,8 @@ export const mockPatient = {
     billing: patientData.billing,
     profile: patientData.profile,
     records: patientData.records,
-    clinical: patientData.clinical
+    clinical: patientData.clinical,
+    engagement: patientData.engagement
 };
 
 export const mockProviders = patientData.availableProviders.map(p => ({

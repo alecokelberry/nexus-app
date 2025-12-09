@@ -2,9 +2,10 @@
 
 import { Header } from "@/components/Header";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, MapPin, Clock, Phone, Ear, Star, Smile, X, Menu } from "lucide-react";
+import { ArrowRight, CheckCircle2, MapPin, Clock, Phone, Ear, Star, Smile } from "lucide-react";
 import { motion } from "framer-motion";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
+import Image from "next/image";
 
 // Components for Section Icons
 const EarIcon = () => <Ear className="w-8 h-8 text-primary" />;
@@ -81,9 +82,11 @@ export default function LandingPage() {
                             <div className="absolute -bottom-12 -left-12 w-64 h-64 bg-primary/20 rounded-full blur-3xl" />
 
                             <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-                                <img
+                                <Image
                                     src="https://images.unsplash.com/photo-1549497558-86c5269b56eb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1280&q=80"
                                     alt="Southern Utah Landscape"
+                                    width={1280}
+                                    height={800}
                                     className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700"
                                 />
                                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-8">

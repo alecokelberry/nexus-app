@@ -51,9 +51,25 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
         const storedProfile = localStorage.getItem("nexus_profile");
         const storedAppts = localStorage.getItem("nexus_appointments");
 
-        if (storedProfile) setPatientProfile(JSON.parse(storedProfile));
-        if (storedAppts) setAppointments(JSON.parse(storedAppts));
+        if (storedProfile) {
+            try {
+                setPatientProfile(JSON.parse(storedProfile));
+            } catch (e) {
+                console.error("Failed to parse profile", e);
+            }
+        }
+        if (storedAppts) {
+            try {
+                setAppointments(JSON.parse(storedAppts));
+            } catch (e) {
+                console.error("Failed to parse appointments", e);
+            }
+        }
     }, []);
+
+    // Prevent hydration mismatch by not rendering provider content until mounted
+    // However, for this context provider, we can just allow default values initially
+    // and let them update after mount, which is standard for client-side only data.
 
     useEffect(() => {
         localStorage.setItem("nexus_profile", JSON.stringify(patientProfile));

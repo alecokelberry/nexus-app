@@ -1,6 +1,5 @@
 import { format, addDays, startOfToday, isSameDay } from "date-fns";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
 
 interface AppointmentCalendarProps {
     selectedDate: Date | null;
@@ -9,7 +8,6 @@ interface AppointmentCalendarProps {
 }
 
 export function AppointmentCalendar({ selectedDate, onSelectDate, availableDates }: AppointmentCalendarProps) {
-    const [currentMonth, setCurrentMonth] = useState(startOfToday());
     const today = startOfToday();
 
     // Generate next 14 days for simple demo purposes

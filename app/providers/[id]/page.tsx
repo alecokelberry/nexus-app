@@ -1,10 +1,10 @@
 "use client";
 
-import { useData } from "@/context/DataContext";
 import { Header } from "@/components/Header";
-import { ArrowLeft, Star, GraduationCap, MapPin, Calendar, Clock, Award, Phone, Mail } from "lucide-react";
+import { ArrowLeft, Star, GraduationCap, MapPin, Award, Phone, Mail } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import Image from "next/image";
 import { mockProviders } from "@/data/mockPatient"; // We will use this to lookup
 
 export default function ProviderDetailPage() {
@@ -41,7 +41,7 @@ export default function ProviderDetailPage() {
                         <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
                             <div className="w-full md:w-1/3 max-w-sm flex-shrink-0">
                                 <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl shadow-slate-200/50 relative">
-                                    <img src={provider.image} alt={provider.name} className="w-full h-full object-cover" />
+                                    <Image src={provider.image} alt={provider.name} fill className="object-cover" />
                                 </div>
                             </div>
 
@@ -124,7 +124,7 @@ export default function ProviderDetailPage() {
                                                 <Star className="w-4 h-4 fill-current" />
                                                 <Star className="w-4 h-4 fill-current" />
                                             </div>
-                                            <p className="text-slate-700 italic mb-4">"Dr. Thorne actually listened to me. I've been struggling with sinus issues for years and he finally found the root cause. Highly recommended!"</p>
+                                            <p className="text-slate-700 italic mb-4">&quot;Dr. Thorne actually listened to me. I&apos;ve been struggling with sinus issues for years and he finally found the root cause. Highly recommended!&quot;</p>
                                             <p className="text-sm font-semibold text-slate-900">— Sarah J., verified patient</p>
                                         </div>
                                     ))}

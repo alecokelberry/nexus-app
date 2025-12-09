@@ -58,7 +58,7 @@ export function WaitlistCard() {
             </div>
 
             <div className="mt-4 text-xs text-amber-700/80 text-center">
-                We'll notify you via SMS instantly when a spot opens up.
+                We&apos;ll notify you automatically when a slot opens up.
             </div>
         </div>
     );

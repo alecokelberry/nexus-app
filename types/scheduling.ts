@@ -8,6 +8,13 @@ export type VisitType =
     | "surgery_consult";
 
 export type LocationId = "st_george" | "provo";
+export type RecurrenceType = "none" | "daily" | "weekly" | "monthly";
+
+export interface ReminderPreferences {
+    email: boolean;
+    sms: boolean;
+    phone: boolean;
+}
 
 export interface VisitRule {
     type: VisitType;
@@ -15,6 +22,7 @@ export interface VisitRule {
     durationMinutes: number;
     requiresProvider?: boolean; // If false, can be with nurse/tech (e.g., allergy shot)
     description: string;
+    allowRecurrence?: boolean;
 }
 
 export interface ClinicLocation {
@@ -36,6 +44,8 @@ export interface TimeSlot {
     providerId?: string;
     locationId: LocationId;
     isDoubleBooked?: boolean; // For urgent override
+    recurrence?: RecurrenceType;
+    reminders?: ReminderPreferences;
 }
 
 export interface WaitlistEntry {
@@ -45,6 +55,7 @@ export interface WaitlistEntry {
     preferredDays: string[]; // ["Mon", "Wed"]
     timeRange: "AM" | "PM" | "Any";
     status: "Active" | "Notified" | "Fulfilled";
+    notes?: string;
 }
 
 export const VISIT_TYPES: VisitRule[] = [
@@ -53,7 +64,7 @@ export const VISIT_TYPES: VisitRule[] = [
     { type: "urgent", label: "Urgent/Sick Visit", durationMinutes: 15, requiresProvider: true, description: "Sudden onset of symptoms (ear pain, sinus infection)." },
     { type: "annual_checkup", label: "Annual Checkup", durationMinutes: 30, requiresProvider: true, description: "Routine yearly examination." },
     { type: "audiology_exam", label: "Hearing Test", durationMinutes: 60, requiresProvider: false, description: "Comprehensive hearing evaluation with audiologist." },
-    { type: "allergy_shot", label: "Allergy Shot", durationMinutes: 10, requiresProvider: false, description: "Routine immunotherapy injection." },
+    { type: "allergy_shot", label: "Allergy Shot", durationMinutes: 10, requiresProvider: false, description: "Routine immunotherapy injection.", allowRecurrence: true },
     { type: "surgery_consult", label: "Surgery Consultation", durationMinutes: 45, requiresProvider: true, description: "Discuss potential surgical options." },
 ];
 

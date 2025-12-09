@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState } from "react";
 import { FamilyMember, TimeSlot, VisitType, VISIT_TYPES, WaitlistEntry, LocationId } from "@/types/scheduling";
 import { patientData } from "@/data/mockPatient";
-import { addDays, setHours, setMinutes, format, isBefore } from "date-fns";
+import { addDays, setHours, setMinutes, isBefore } from "date-fns";
 
 // Mock Family Data
 const INITIAL_FAMILY: FamilyMember[] = [
@@ -21,13 +21,13 @@ interface SchedulingContextType {
     addToWaitlist: (entry: Omit<WaitlistEntry, "id" | "status">) => void;
     removeFromWaitlist: (id: string) => void;
     generateSlots: (date: Date, visitType: VisitType, location: LocationId, providerId: string) => TimeSlot[];
-    scheduleAppointment: (slot: TimeSlot, visitType: VisitType, patientId: string) => Promise<boolean>;
+    scheduleAppointment: (slot: TimeSlot, visitType: VisitType, patientId: string) => Promise<TimeSlot[]>;
 }
 
 const SchedulingContext = createContext<SchedulingContextType | undefined>(undefined);
 
 export function SchedulingProvider({ children }: { children: React.ReactNode }) {
-    const [familyMembers, setFamilyMembers] = useState<FamilyMember[]>(INITIAL_FAMILY);
+    const [familyMembers] = useState<FamilyMember[]>(INITIAL_FAMILY); // Removed unused setFamilyMembers
     const [activePatientId, setActivePatientId] = useState<string>(patientData?.profile?.id || "patient_123");
     const [waitlist, setWaitlist] = useState<WaitlistEntry[]>([]);
     const [appointments, setAppointments] = useState<TimeSlot[]>([]);
@@ -52,9 +52,12 @@ export function SchedulingProvider({ children }: { children: React.ReactNode }) 
         const rule = VISIT_TYPES.find(v => v.type === visitType);
         if (!rule) return [];
 
+        const slots: TimeSlot[] = [];
+        const duration = rule.durationMinutes;
+
         // Surgery Consults only in afternoons (1 PM - 5 PM)
         let startHour = 9;
-        let endHour = 17;
+        const endHour = 17; // fixed prefer-const
 
         if (visitType === "surgery_consult") {
             startHour = 13; // 1 PM
@@ -112,13 +115,32 @@ export function SchedulingProvider({ children }: { children: React.ReactNode }) 
             return appt.providerId === slot.providerId && appt.start === slot.start;
         });
 
-        if (isBooked) return false;
+        if (isBooked) return [];
+
+        const newAppointments = [slot];
+
+        // Handle Recurrence (Mock logic: add 4 weekly slots)
+        if (slot.recurrence === 'weekly') {
+            for (let i = 1; i <= 4; i++) {
+                const nextStart = addDays(new Date(slot.start), i * 7);
+                const nextEnd = addDays(new Date(slot.end), i * 7);
+                newAppointments.push({
+                    ...slot,
+                    start: nextStart.toISOString(),
+                    end: nextEnd.toISOString()
+                });
+            }
+        }
 
         // Mock API call
-        return new Promise<boolean>((resolve) => {
+        return new Promise<TimeSlot[]>((resolve) => {
             setTimeout(() => {
-                setAppointments(prev => [...prev, slot]);
-                resolve(true);
+                setAppointments(prev => [...prev, ...newAppointments]);
+                // Simulate sending reminders
+                if (slot.reminders?.sms) {
+                    console.log(`[Mock System] sending SMS to patient ${patientId} for ${slot.start}`);
+                }
+                resolve(newAppointments);
             }, 800);
         });
     };
